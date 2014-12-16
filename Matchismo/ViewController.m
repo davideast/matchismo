@@ -40,20 +40,19 @@
                           forState:UIControlStateNormal];
     
         [sender setTitle:@"" forState:UIControlStateNormal];
+        self.flipCount++;
     } else {
         // draw a card
         Card *drawnCard = [self.deck drawRandomCard];
-        UIImage *cardImage = [UIImage imageNamed:@"cardfront"];
-        [sender setBackgroundImage:cardImage
-                          forState:UIControlStateNormal];
-        NSString *cardTitle = @"X"; // set a no card title default
-        // if a card exists set the title to its contents
         if(drawnCard) {
-            cardTitle = drawnCard.contents;
+            UIImage *cardImage = [UIImage imageNamed:@"cardfront"];
+            [sender setBackgroundImage:cardImage
+                              forState:UIControlStateNormal];
+            [sender setTitle:drawnCard.contents
+                    forState:UIControlStateNormal];
+            self.flipCount++;
         }
-        [sender setTitle:cardTitle forState:UIControlStateNormal];
     }
-    self.flipCount++;
 }
 
 @end
