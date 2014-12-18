@@ -51,6 +51,7 @@ static const int COST_TO_CHOOSE = 1;
     if(!card.isMatched) {
         
         if(card.isChosen) {
+            // set chosen to NO, making it flip face down
             card.chosen = NO;
         } else {
             // matches against another card
@@ -85,8 +86,10 @@ static const int COST_TO_CHOOSE = 1;
     return (index < [self.cards count]) ? self.cards[index] : nil;
 }
 
-- (instancetype)init{
+- (instancetype)init
+{
     return nil;
 }
+
 
 @end

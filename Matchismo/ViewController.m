@@ -29,13 +29,24 @@
 
 - (CardMatchingGame *) game
 {
-    if(!_game) _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[self createDeck]];
+    if(!_game) _game = [self createGame];
     return _game;
 }
 
 - (Deck *)createDeck
 {
     return [[PlayingCardDeck alloc] init];
+}
+
+- (CardMatchingGame *)createGame
+{
+    return [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count]
+                                             usingDeck:[self createDeck]];
+}
+
+- (IBAction)dealAgain:(UIButton *)sender {
+    self.game = [self createGame];
+    [self updateUI];
 }
 
 - (IBAction)touchCardButton:(UIButton *)sender
@@ -48,12 +59,17 @@
 - (void)updateUI
 {
     for (UIButton* cardButton in self.cardButtons) {
+        
         NSUInteger cardIndex = [self.cardButtons indexOfObject:cardButton];
+        
         Card *card = [self.game cardAtIndex:cardIndex];
+        
         [cardButton setTitle:[self titleForCard:card]
                     forState:UIControlStateNormal];
+        
         [cardButton setBackgroundImage:[self imageForCard:card]
                               forState:UIControlStateNormal];
+        
         cardButton.enabled = !card.isMatched;
     }
     [self.scoreLabel setText:[NSString stringWithFormat:@"Score: %ld", (long)self.game.score]];
