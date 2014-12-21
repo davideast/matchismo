@@ -85,17 +85,38 @@ static const int CARDS_TO_CHOOSE = 3;
 
 - (void)checkCardMatchForCards:(Card*)card :(NSMutableArray *)otherCards
 {
+    // TODO: Fix scoring
     int matchScore = [card match:otherCards];
     
     if(matchScore) {
         self.score += matchScore * MATCH_BONUS;
+        // Set all cards matched = YES
         card.matched = YES;
-        // TODO: Set otherCards matched = YES
+        [self setMatchForCards:otherCards :YES];
     } else {
-        // Set other cards chosen = NO
+        // Set all cards chosen = NO
+        [self setChosenForCards:otherCards :NO];
         self.score -= MISMATCH_PENALTY;
     }
     
+    // clear chosenCards array because we have either matched all the cards
+    // which unselects them, or we had a bad match which also unselects them
+    [self.chosenCards removeAllObjects];
+    
+}
+
+- (void)setMatchForCards:(NSMutableArray*)cards :(BOOL)isMatched
+{
+    for (Card *card in cards){
+        card.matched = isMatched;
+    }
+}
+
+- (void)setChosenForCards:(NSMutableArray*)cards :(BOOL)isChosen
+{
+    for (Card *card in cards){
+        card.chosen = isChosen;
+    }
 }
 
 - (Card *)cardAtIndex:(NSUInteger)index

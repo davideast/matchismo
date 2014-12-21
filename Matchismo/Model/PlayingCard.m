@@ -16,6 +16,7 @@
 
 @synthesize suit = _suit;
 
+// TODO: Fix scoring
 - (int)match:(NSArray *)otherCards
 {
     int score = 0;
