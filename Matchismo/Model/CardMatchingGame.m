@@ -85,10 +85,10 @@ static const int CHOSEN_DESCR_MISMATCH = 2;
 - (void)checkCardMatchForCards:(Card*)card :(NSMutableArray *)pickedCards
 {
   int matchScore = [card match:pickedCards];
+  [pickedCards addObject:card];
   if(matchScore) {
     self.score += matchScore * MATCH_BONUS;
     // Set all cards matched = YES
-    [pickedCards addObject:card];
     [self setMatchForCards:pickedCards :YES];
     [self setChosenForCards:pickedCards: YES];
     [self changeChosenDescriptionForCards:pickedCards :CHOSEN_DESCR_MATCHED];
@@ -117,7 +117,8 @@ static const int CHOSEN_DESCR_MISMATCH = 2;
       break;
     // Mistmatch cards
     case CHOSEN_DESCR_MISMATCH:
-      description = @"Mistmatch of %@";
+      description = @"Mismatch of %@";
+      break;
     // Unknown
     default:
       description = @"";
