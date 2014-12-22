@@ -428,10 +428,17 @@
                                     <action selector="dealAgain:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="NQd-89-Z91"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2MY-jN-ROs">
+                                <rect key="frame" x="32" y="447" width="256" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.50196081399917603" blue="0.25098040699958801" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
+                        <outlet property="descriptionLabel" destination="2MY-jN-ROs" id="zPV-6I-zBo"/>
                         <outlet property="scoreLabel" destination="HZw-aq-LQ6" id="e2I-BO-kIh"/>
                         <outletCollection property="cardButtons" destination="Stf-cd-gyW" id="AX1-eA-H2K"/>
                         <outletCollection property="cardButtons" destination="doo-YS-14e" id="pNL-on-iA6"/>

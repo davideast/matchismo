@@ -19,4 +19,6 @@
 
 @property (nonatomic, readonly) NSInteger score;
 
+@property (nonatomic, strong) NSString* chosenDescription;
+
 @end
