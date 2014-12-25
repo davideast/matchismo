@@ -9,6 +9,8 @@
 #import "ViewController.h"
 #import "PlayingCardDeck.h"
 #import "CardMatchingGame.h"
+#import "Outcome.h"
+#import "MatchOutcome.h"
 
 @interface ViewController ()
 
@@ -21,10 +23,6 @@
 @end
 
 @implementation ViewController
-
-static const int CHOSEN_DESCR_PICKED = 0;
-static const int CHOSEN_DESCR_MATCHED = 1;
-static const int CHOSEN_DESCR_MISMATCH = 2;
 
 - (Deck *)deck
 {
@@ -90,26 +88,27 @@ static const int CHOSEN_DESCR_MISMATCH = 2;
     cardButton.enabled = !card.isMatched;
   }
   [self.scoreLabel setText:[NSString stringWithFormat:@"Score: %ld", (long)self.game.score]];
-  NSString *chosenDescr = [self changeChosenDescriptionForCards:chosenCards :self.game.lastOutcome];
+  NSLog(@"%@", self.game.lastOutcome.cardContents);
+  NSString *chosenDescr = [self changeChosenDescriptionForMatchOutcome:self.game.lastOutcome];
   self.chosenDescription = chosenDescr;
 }
 
-- (NSString *)changeChosenDescriptionForCards:(NSMutableArray *)cards :(NSUInteger)type
+- (NSString *)changeChosenDescriptionForMatchOutcome:(MatchOutcome *)outcome
 {
-  NSString *cardsString = [cards componentsJoinedByString:@","];
+  
   NSString *description = @"";
   
-  switch (type) {
+  switch (outcome.outcome) {
       // Picked card
-    case CHOSEN_DESCR_PICKED:
+    case OutcomePicked:
       description = @"%@";
       break;
       // Matched cards
-    case CHOSEN_DESCR_MATCHED:
+    case OutcomeMatch:
       description = @"Matched %@";
       break;
       // Mistmatch cards
-    case CHOSEN_DESCR_MISMATCH:
+    case OutcomeMismatch:
       description = @"Mismatch of %@";
       break;
       // Unknown
@@ -118,7 +117,7 @@ static const int CHOSEN_DESCR_MISMATCH = 2;
       break;
   }
   
-  return [NSString stringWithFormat:description, cardsString];
+  return [NSString stringWithFormat:description, outcome.cardContents];
 }
 
 - (NSString *)titleForCard:(Card *)card

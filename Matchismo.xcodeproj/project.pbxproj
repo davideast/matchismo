@@ -19,6 +19,7 @@
 		BB591DCA1A3DD4110016A038 /* PlayingCard.m in Sources */ = {isa = PBXBuildFile; fileRef = BB591DC91A3DD4110016A038 /* PlayingCard.m */; };
 		BB591DD01A3DD9190016A038 /* PlayingCardDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = BB591DCF1A3DD9190016A038 /* PlayingCardDeck.m */; };
 		BB591DD21A3DE0660016A038 /* Image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB591DD11A3DE0660016A038 /* Image.xcassets */; };
+		BBBB0E111A4BE44B0038BB79 /* MatchOutcome.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBB0E101A4BE44B0038BB79 /* MatchOutcome.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,9 @@
 		BB591DCE1A3DD9190016A038 /* PlayingCardDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayingCardDeck.h; path = Model/PlayingCardDeck.h; sourceTree = "<group>"; };
 		BB591DCF1A3DD9190016A038 /* PlayingCardDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayingCardDeck.m; path = Model/PlayingCardDeck.m; sourceTree = "<group>"; };
 		BB591DD11A3DE0660016A038 /* Image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Image.xcassets; sourceTree = "<group>"; };
+		BBBB0E0F1A4BE44B0038BB79 /* MatchOutcome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MatchOutcome.h; path = Model/MatchOutcome.h; sourceTree = "<group>"; };
+		BBBB0E101A4BE44B0038BB79 /* MatchOutcome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MatchOutcome.m; path = Model/MatchOutcome.m; sourceTree = "<group>"; };
+		BBBB0E131A4BE6080038BB79 /* Outcome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Outcome.h; path = Model/Outcome.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +142,7 @@
 		BB591DBD1A3DCD580016A038 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BBBB0E131A4BE6080038BB79 /* Outcome.h */,
 				BB591DC11A3DCF000016A038 /* Card.m */,
 				BB591DC31A3DCF320016A038 /* Card.h */,
 				BB591DC41A3DD0900016A038 /* Deck.h */,
@@ -148,6 +153,8 @@
 				BB591DCF1A3DD9190016A038 /* PlayingCardDeck.m */,
 				BB18EA561A40793E004375C9 /* CardMatchingGame.h */,
 				BB18EA571A40793E004375C9 /* CardMatchingGame.m */,
+				BBBB0E0F1A4BE44B0038BB79 /* MatchOutcome.h */,
+				BBBB0E101A4BE44B0038BB79 /* MatchOutcome.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -254,6 +261,7 @@
 			files = (
 				BB18EA581A40793E004375C9 /* CardMatchingGame.m in Sources */,
 				BB591DA01A3DCC960016A038 /* ViewController.m in Sources */,
+				BBBB0E111A4BE44B0038BB79 /* MatchOutcome.m in Sources */,
 				BB591DC61A3DD0900016A038 /* Deck.m in Sources */,
 				BB591DCA1A3DD4110016A038 /* PlayingCard.m in Sources */,
 				BB591D9D1A3DCC960016A038 /* AppDelegate.m in Sources */,

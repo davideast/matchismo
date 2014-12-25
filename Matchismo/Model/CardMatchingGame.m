@@ -10,7 +10,7 @@
 
 @interface CardMatchingGame()
 @property (nonatomic, readwrite) NSInteger score;
-@property (nonatomic, readwrite) NSUInteger lastOutcome;
+@property (nonatomic, readwrite) MatchOutcome *lastOutcome;
 @property (nonatomic, strong) NSMutableArray *cards; // of Card
 @end
 
@@ -20,9 +20,6 @@ static const int MISMATCH_PENALTY = 2;
 static const int MATCH_BONUS = 4;
 static const int COST_TO_CHOOSE = 1;
 static const int CARDS_TO_CHOOSE = 3;
-static const int CHOSEN_DESCR_PICKED = 0;
-static const int CHOSEN_DESCR_MATCHED = 1;
-static const int CHOSEN_DESCR_MISMATCH = 2;
 
 - (NSMutableArray*)cards
 {
@@ -76,7 +73,7 @@ static const int CHOSEN_DESCR_MISMATCH = 2;
       } else {
         card.chosen = YES;
         // there was no outcome
-        self.lastOutcome = CHOSEN_DESCR_PICKED;
+        self.lastOutcome = [[MatchOutcome alloc] initWithCards:pickedCards :OutcomePicked];
       }
   
       // penalty for every flip of a card
@@ -95,12 +92,12 @@ static const int CHOSEN_DESCR_MISMATCH = 2;
     // Set all cards matched = YES
     [self setMatchForCards:pickedCards :YES];
     [self setChosenForCards:pickedCards: YES];
-    self.lastOutcome = CHOSEN_DESCR_MATCHED;
+    self.lastOutcome = [[MatchOutcome alloc] initWithCards:pickedCards :OutcomeMatch];
   } else {
     // Set all cards chosen = NO
     [self setChosenForCards:pickedCards :NO];
     self.score -= MISMATCH_PENALTY;
-    self.lastOutcome = CHOSEN_DESCR_MISMATCH;
+    self.lastOutcome = [[MatchOutcome alloc] initWithCards:pickedCards :OutcomeMismatch];
   }
 }
 
