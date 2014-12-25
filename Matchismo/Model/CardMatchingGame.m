@@ -10,6 +10,7 @@
 
 @interface CardMatchingGame()
 @property (nonatomic, readwrite) NSInteger score;
+@property (nonatomic, readwrite) NSUInteger lastOutcome;
 @property (nonatomic, strong) NSMutableArray *cards; // of Card
 @end
 
@@ -74,6 +75,8 @@ static const int CHOSEN_DESCR_MISMATCH = 2;
         [self checkCardMatchForCards:card :pickedCards];
       } else {
         card.chosen = YES;
+        // there was no outcome
+        self.lastOutcome = CHOSEN_DESCR_PICKED;
       }
   
       // penalty for every flip of a card
@@ -84,6 +87,7 @@ static const int CHOSEN_DESCR_MISMATCH = 2;
 
 - (void)checkCardMatchForCards:(Card*)card :(NSMutableArray *)pickedCards
 {
+  // store the previous match score
   int matchScore = [card match:pickedCards];
   [pickedCards addObject:card];
   if(matchScore) {
@@ -91,41 +95,13 @@ static const int CHOSEN_DESCR_MISMATCH = 2;
     // Set all cards matched = YES
     [self setMatchForCards:pickedCards :YES];
     [self setChosenForCards:pickedCards: YES];
-    [self changeChosenDescriptionForCards:pickedCards :CHOSEN_DESCR_MATCHED];
+    self.lastOutcome = CHOSEN_DESCR_MATCHED;
   } else {
     // Set all cards chosen = NO
     [self setChosenForCards:pickedCards :NO];
-    [self changeChosenDescriptionForCards:pickedCards :CHOSEN_DESCR_MISMATCH];
     self.score -= MISMATCH_PENALTY;
+    self.lastOutcome = CHOSEN_DESCR_MISMATCH;
   }
-  
-}
-
-- (void)changeChosenDescriptionForCards:(NSMutableArray *)cards :(int)type
-{
-  NSString *cardsString = [cards componentsJoinedByString:@","];
-  NSString *description = @"";
-  
-  switch (type) {
-    // Picked card
-    case CHOSEN_DESCR_PICKED:
-      description = @"%@";
-      break;
-    // Matched cards
-    case CHOSEN_DESCR_MATCHED:
-      description = @"Matched %@";
-      break;
-    // Mistmatch cards
-    case CHOSEN_DESCR_MISMATCH:
-      description = @"Mismatch of %@";
-      break;
-    // Unknown
-    default:
-      description = @"";
-      break;
-  }
-  
-  self.chosenDescription = [NSString stringWithFormat:description, cardsString];
 }
 
 - (void)setMatchForCards:(NSMutableArray*)cards :(BOOL)isMatched

@@ -17,7 +17,6 @@
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
-@property (nonatomic, strong) NSMutableArray *chosenCards; // of Card
 @property (nonatomic, strong) NSString *chosenDescription;
 @end
 
@@ -45,12 +44,6 @@ static const int CHOSEN_DESCR_MISMATCH = 2;
   [self.descriptionLabel setText:chosenDescription];
 }
 
-- (NSMutableArray*)chosenCards
-{
-  if(!_chosenCards) _chosenCards = [[NSMutableArray alloc] init];
-  return _chosenCards;
-}
-
 - (Deck *)createDeck
 {
   return [[PlayingCardDeck alloc] init];
@@ -76,11 +69,17 @@ static const int CHOSEN_DESCR_MISMATCH = 2;
 
 - (void)updateUI
 {
+  NSMutableArray* chosenCards = [[NSMutableArray alloc] init];
+  
   for (UIButton* cardButton in self.cardButtons) {
     
     NSUInteger cardIndex = [self.cardButtons indexOfObject:cardButton];
     
     Card *card = [self.game cardAtIndex:cardIndex];
+    
+    if(card.chosen && !card.isMatched) {
+      [chosenCards addObject:card];
+    }
     
     [cardButton setTitle:[self titleForCard:card]
                 forState:UIControlStateNormal];
@@ -91,8 +90,35 @@ static const int CHOSEN_DESCR_MISMATCH = 2;
     cardButton.enabled = !card.isMatched;
   }
   [self.scoreLabel setText:[NSString stringWithFormat:@"Score: %ld", (long)self.game.score]];
-  self.chosenDescription = self.game.chosenDescription;
+  NSString *chosenDescr = [self changeChosenDescriptionForCards:chosenCards :self.game.lastOutcome];
+  self.chosenDescription = chosenDescr;
+}
+
+- (NSString *)changeChosenDescriptionForCards:(NSMutableArray *)cards :(NSUInteger)type
+{
+  NSString *cardsString = [cards componentsJoinedByString:@","];
+  NSString *description = @"";
   
+  switch (type) {
+      // Picked card
+    case CHOSEN_DESCR_PICKED:
+      description = @"%@";
+      break;
+      // Matched cards
+    case CHOSEN_DESCR_MATCHED:
+      description = @"Matched %@";
+      break;
+      // Mistmatch cards
+    case CHOSEN_DESCR_MISMATCH:
+      description = @"Mismatch of %@";
+      break;
+      // Unknown
+    default:
+      description = @"";
+      break;
+  }
+  
+  return [NSString stringWithFormat:description, cardsString];
 }
 
 - (NSString *)titleForCard:(Card *)card
