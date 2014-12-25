@@ -73,6 +73,7 @@ static const int CARDS_TO_CHOOSE = 3;
       } else {
         card.chosen = YES;
         // there was no outcome
+        [pickedCards addObject:card];
         self.lastOutcome = [[MatchOutcome alloc] initWithCards:pickedCards :OutcomePicked];
       }
   

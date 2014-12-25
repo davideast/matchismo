@@ -67,17 +67,11 @@
 
 - (void)updateUI
 {
-  NSMutableArray* chosenCards = [[NSMutableArray alloc] init];
-  
   for (UIButton* cardButton in self.cardButtons) {
     
     NSUInteger cardIndex = [self.cardButtons indexOfObject:cardButton];
     
     Card *card = [self.game cardAtIndex:cardIndex];
-    
-    if(card.chosen && !card.isMatched) {
-      [chosenCards addObject:card];
-    }
     
     [cardButton setTitle:[self titleForCard:card]
                 forState:UIControlStateNormal];
