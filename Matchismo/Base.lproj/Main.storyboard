@@ -26,7 +26,7 @@
         <!--Set-->
         <scene sceneID="5wU-hk-vNP">
             <objects>
-                <viewController id="5g5-pw-9Hd" sceneMemberID="viewController">
+                <viewController id="5g5-pw-9Hd" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="F9N-9F-1Vx"/>
                         <viewControllerLayoutGuide type="bottom" id="jzg-6V-aZl"/>

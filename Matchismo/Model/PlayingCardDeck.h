@@ -1,5 +1,5 @@
 //
-//  NSObject+PlayingCardDeck.h
+//  PlayingCardDeck.h
 //  Matchismo
 //
 //  Created by deast on 12/14/14.

@@ -1,5 +1,5 @@
 //
-//  NSObject+Deck.h
+//  Deck.h
 //  Matchismo
 //
 //  Created by deast on 12/14/14.

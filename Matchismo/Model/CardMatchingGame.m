@@ -1,5 +1,5 @@
 //
-//  NSObject+CardMatchingGame.m
+//  CardMatchingGame.m
 //  Matchismo
 //
 //  Created by deast on 12/16/14.
