@@ -6,14 +6,12 @@
 //  Copyright (c) 2014 Firebase. All rights reserved.
 //
 
-#import "ViewController.h"
-#import "PlayingCardDeck.h"
+#import "CardGameViewController.h"
 #import "CardMatchingGame.h"
 #import "Outcome.h"
 #import "MatchOutcome.h"
 
-@interface ViewController ()
-
+@interface CardGameViewController ()
 @property (strong, nonatomic) Deck *deck;
 @property (strong, nonatomic) CardMatchingGame *game;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
@@ -22,7 +20,7 @@
 @property (nonatomic, strong) NSString *chosenDescription;
 @end
 
-@implementation ViewController
+@implementation CardGameViewController
 
 - (Deck *)deck
 {
@@ -42,9 +40,9 @@
   [self.descriptionLabel setText:chosenDescription];
 }
 
-- (Deck *)createDeck
+- (Deck *)createDeck // abstract
 {
-  return [[PlayingCardDeck alloc] init];
+  return nil;
 }
 
 - (CardMatchingGame *)createGame
