@@ -8,7 +8,7 @@
 // Abstract class
 
 #import <UIKit/UIKit.h>
-#import "PlayingCardDeck.h"
+#import "Deck.h"
 
 @interface CardGameViewController : UIViewController
 
