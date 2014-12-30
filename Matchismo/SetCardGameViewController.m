@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SetCardGameViewController.h"
+#import "SetCardDeck.h"
 
 @interface SetCardGameViewController ()
 
@@ -17,7 +18,7 @@
 
 - (Deck *) createDeck
 {
-  return nil;
+  return [[SetCardDeck alloc] init];
 }
 
 @end
