@@ -13,6 +13,7 @@
 @interface CardGameViewController : UIViewController
 
 - (Deck *)createDeck;
+- (NSAttributedString *)titleForCard:(Card *)card;
 
 @end
 

@@ -71,7 +71,7 @@
     
     Card *card = [self.game cardAtIndex:cardIndex];
     
-    [cardButton setTitle:[self titleForCard:card]
+    [cardButton setAttributedTitle:[self titleForCard:card]
                 forState:UIControlStateNormal];
     
     [cardButton setBackgroundImage:[self imageForCard:card]
@@ -112,9 +112,9 @@
   return [NSString stringWithFormat:description, outcome.cardContents];
 }
 
-- (NSString *)titleForCard:(Card *)card
+- (NSAttributedString *)titleForCard:(Card *)card;
 {
-  return card.isChosen ? card.contents : @"";
+  return [[NSAttributedString alloc] initWithString:card.chosen ? card.contents : @""];
 }
 
 - (UIImage *)imageForCard:(Card *)card
